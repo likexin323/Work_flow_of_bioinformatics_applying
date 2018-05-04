@@ -1,4 +1,4 @@
-# clean_reads  and map
+# 01.Clean_reads  and map
 ## Clean Reads
 一般使用脚本 01.PairEndMultyReadsQualityFilter.pl
 ```
