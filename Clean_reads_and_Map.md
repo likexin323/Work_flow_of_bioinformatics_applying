@@ -26,9 +26,9 @@ java -Xmx10g -jar /home/share/software/picard/picard-tools-1.129/picard.jar Mark
 ```
 #### 获得INDEL的区间
 ```
-java -jar /home/share/users/yangyongzhi2012/bin/GenomeAnalysisTK.jar -nt 30 -Rref.fasta -T RealignerTargetCreator -o 3.realign/sample.realn.intervals -I 2.rehead/sample.rmdup.bam 2>3.realign/sample.realn.intervals.log
+java -jar GenomeAnalysisTK.jar -nt 30 -Rref.fasta -T RealignerTargetCreator -o 3.realign/sample.realn.intervals -I 2.rehead/sample.rmdup.bam 2>3.realign/sample.realn.intervals.log
 ```
 #### 对这些区间重新比对
 ```
-java -jar /home/share/users/yangyongzhi2012/bin/GenomeAnalysisTK.jar -R ref.fa -T IndelRealigner -targetIntervals 3.realign/sample.realn.intervals -o 3.realign/sample.realn.bam -I 2.rehead/sample.rmdup.bam 2>3.realign/sample.realn.bam.log
+java -jar GenomeAnalysisTK.jar -R ref.fa -T IndelRealigner -targetIntervals 3.realign/sample.realn.intervals -o 3.realign/sample.realn.bam -I 2.rehead/sample.rmdup.bam 2>3.realign/sample.realn.bam.log
 ```
