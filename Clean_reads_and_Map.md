@@ -6,6 +6,7 @@ perl 01.PairEndMultyReadsQualityFilter.pl $prefix $fastq1 $fastq2
 ```
 ####### 也可以采用fastp软件进行过滤，该软件可以同时把低质量的、较短的、以及含有接头的序列同时过滤掉，而且不需要输入接头序列
 .....
+
 fastp -l 45 -q 20 -i /data/users/likexin/brachypodium/raw/ES6_13/ES6_13_HGWVWALXX_L2_1.fq.gz -I /data/users/likexin/brachypodium/raw/ES6_13/ES6_13_HGWVWALXX_L2_2.fq.gz -o /data/users/likexin/brachypodium/clean/ES6_13_1.fq.gz -O /data/users/likexin/brachypodium/clean/ES6_13_2.fq.gz
 ......
 ## 将reads比对到参考基因组
