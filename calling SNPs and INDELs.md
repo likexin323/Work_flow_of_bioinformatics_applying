@@ -5,7 +5,7 @@
 ```
 ### 2 将GVCF文件转换为VCF文件
 ```
-gatk GenotypeGVCFs -R reference.fa -V Sample1.gvcf.gz -V Sample2.gvcf.gz -V ... -O Pop.vcf.gz
+gatk CombineGVCFs -R reference.fa -V Sample1.gvcf.gz -V Sample2.gvcf.gz -V ... -O Pop.vcf.gz
 ```
 ### 使用GATKcall SNP并进行条件过滤
 #### 首先进行Variant select
