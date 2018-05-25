@@ -12,7 +12,7 @@ gatk CombineGVCFs -R reference.fa -V Sample1.gvcf.gz -V Sample2.gvcf.gz -V ... -
 使用默认参数
 ##### SNP
 ```
-gatk SelectVariants -R /reference.fa -V Pop.vcf.gz -selectType SNP -o Pop.SNP.vcf.gz
+gatk SelectVariants -R /reference.fa -V Pop.vcf.gz -select-type SNP -o Pop.SNP.vcf.gz
 ```
 ##### INDEL
 ```
