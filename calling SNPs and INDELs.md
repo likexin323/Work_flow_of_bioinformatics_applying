@@ -5,23 +5,23 @@
 ```
 ### 2 将GVCF文件转换为VCF文件
 ```
-GATK GenotypeGVCFs -R reference.fa -V Sample1.gvcf.gz -V Sample2.gvcf.gz -V ... -O Pop.vcf.gz
+gatk GenotypeGVCFs -R reference.fa -V Sample1.gvcf.gz -V Sample2.gvcf.gz -V ... -O Pop.vcf.gz
 ```
 ### 使用GATKcall SNP并进行条件过滤
 #### 首先进行Variant select
 使用默认参数
 ##### SNP
 ```
-GATK SelectVariants -R /reference.fa -V Pop.vcf.gz -selectType SNP -o Pop.SNP.vcf.gz
+gatk SelectVariants -R /reference.fa -V Pop.vcf.gz -selectType SNP -o Pop.SNP.vcf.gz
 ```
 ##### INDEL
 ```
-GATK SelectVariants -R reference.fa -V Pop.vcf.gz -selectType INDEL -o Pop.INDEL.vcf.gz
+gatk SelectVariants -R reference.fa -V Pop.vcf.gz -selectType INDEL -o Pop.INDEL.vcf.gz
 ```
 #### 对SNP和INDEL质量进行条件过滤（Hard Filter）
 ```
-GATK VariantFiltration -R reference.fa -V Pop.SNP.vcf.gz --filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0"  --filterName "my_snp_filter" -o Pop.HDflt.SNP.vcf.gz
+gatk VariantFiltration -R reference.fa -V Pop.SNP.vcf.gz --filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0"  --filterName "my_snp_filter" -o Pop.HDflt.SNP.vcf.gz
 ```
 ```
-GATK VariantFiltration -R reference.fa -V Pop.INDEL.vcf.gz --filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" --filterName "my_indel_filter" -o Pop.HDflt.INDEL.vcf.gz
+gatk VariantFiltration -R reference.fa -V Pop.INDEL.vcf.gz --filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" --filterName "my_indel_filter" -o Pop.HDflt.INDEL.vcf.gz
 ```
