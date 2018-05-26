@@ -20,8 +20,8 @@ gatk SelectVariants -R reference.fa -V Pop.vcf.gz -select-type INDEL -O Pop.INDE
 ```
 #### 对SNP和INDEL质量进行条件过滤（Hard Filter）
 ```
-gatk VariantFiltration -R reference.fa -V Pop.SNP.vcf.gz --filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0"  --filterName "my_snp_filter" -o Pop.HDflt.SNP.vcf.gz
+gatk VariantFiltration -R reference.fa -V Pop.SNP.vcf.gz -G-filter "QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0"  -G-filter-name "my_snp_filter" -O Pop.HDflt.SNP.vcf.gz
 ```
 ```
-gatk VariantFiltration -R reference.fa -V Pop.INDEL.vcf.gz --filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" --filterName "my_indel_filter" -o Pop.HDflt.INDEL.vcf.gz
+gatk VariantFiltration -R reference.fa -V Pop.INDEL.vcf.gz -G-filter "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" -G-filter-name "my_indel_filter" -O Pop.HDflt.INDEL.vcf.gz
 ```
