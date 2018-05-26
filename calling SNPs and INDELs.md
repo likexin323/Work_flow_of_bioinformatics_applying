@@ -12,11 +12,11 @@ gatk CombineGVCFs -R reference.fa -V Sample1.gvcf.gz -V Sample2.gvcf.gz -V ... -
 使用默认参数
 ##### SNP
 ```
-gatk SelectVariants -R /reference.fa -V Pop.vcf.gz -select-type SNP -o Pop.SNP.vcf.gz
+gatk SelectVariants -R /reference.fa -V Pop.vcf.gz -select-type SNP -O Pop.SNP.vcf.gz
 ```
 ##### INDEL
 ```
-gatk SelectVariants -R reference.fa -V Pop.vcf.gz -selectType INDEL -o Pop.INDEL.vcf.gz
+gatk SelectVariants -R reference.fa -V Pop.vcf.gz -select-type INDEL -O Pop.INDEL.vcf.gz
 ```
 #### 对SNP和INDEL质量进行条件过滤（Hard Filter）
 ```
