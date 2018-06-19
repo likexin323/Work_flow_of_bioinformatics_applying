@@ -6,3 +6,14 @@
 
 ##组装完成后统计组装情况
 /home/software/trinityrnaseq-Trinity-v2.6.6/util/TrinityStats.pl Trinity.fasta
+
+##提取最长的转录本
+/home/software/trinityrnaseq-Trinity-v2.6.6/util/misc/get_longest_isoform_seq_per_trinity_gene.pl Trinity.fasta>Unigene.fasta
+
+##TransDecoder识别转录本中的编码区并预测蛋白
+TransDecoder.LongOrfs -t trinity_out.Trinity.fasta
+TransDecoder.Predict -t rinity_out.Trinity.fasta
+
+##Trinotate注释转录组
+
+
