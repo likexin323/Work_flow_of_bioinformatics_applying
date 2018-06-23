@@ -23,6 +23,10 @@ makeblastdb -in uniprot_sprot.pep -dbtype prot
 2. hmmpress Pfam-A.hmm
 ##安装hmmer时候有一步  ./configure 然后make
 
+##跟蛋白库比对
+/data/users/likexin/softwares/ncbi-blast-2.7.1+/bin/blastp -query /data/users/likexin/xuRN_trinity/likexin.trinity/unigen.fasta.transdecoder_dir/longest_orfs.pep -db  /data/users/likexin/softwares/uniprot_sprot.pep -num_threads 50 -max_target_seqs 1 -outfmt 6 >blastp.outfmt6 
+##跟uniprot库比对
+/data/users/likexin/softwares/ncbi-blast-2.7.1+/bin/blastx -query /data/users/likexin/xuRN_trinity/likexin.trinity/unigen.fasta -db  /data/users/likexin/softwares/uniprot_sprot.pep -num_threads 50 -max_target_seqs 1 -outfmt 6 >blastx.outfmt6
 ##Trinotate注释转录组
 
 
