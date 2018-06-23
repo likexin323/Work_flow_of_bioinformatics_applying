@@ -1,0 +1,19 @@
+##将脚本复制到我要工作的目录下面
+cp /home/lzu_zhangshangzhe/00.code/01.FastEPRR /data/users/likexin/recombination
+##下载FastEPRR软件
+wget http://www.picb.ac.cn/evolgen/softwares/download/FastEPRR/FastEPRR_1.0.tar.gz
+
+##在R 中安装FastEPRR软件包
+1. $R
+2. install.packages("/data/users/likexin/softwares/FastEPRR_1.0.tar.gz",repos=NULL, type="source")
+## 基因分型--phase
+java -jar beagle.jar gt=IN.vcf.gz out=IN.phase
+
+## 按照scaffold分割VCF文件
+perl 01.split_vcf.pl IN.phase.vcf.gz
+
+##生成第一步使用的R脚本
+
+perl 02.fastEPRR.pl
+##进行第一步计算，可以并行
+parallel -j 10<02.fastEPRR.step1.sh
