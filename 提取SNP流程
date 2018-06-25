@@ -3,11 +3,10 @@
 java -jar /home/software/GenomeAnalysisTK.jar -T GenotypeGVCFs -R ../../reference_stacei/Bstacei_316_v1.0.softmasked.fa  -V AS2_13.vcf.gz -V AS2_14.vcf.gz -V AS2_15.vcf.gz -V AS2_18.vcf.gz -V AS40.vcf.gz -V AS4.vcf.gz -V ES_15.vcf.gz -V ES_1.vcf.gz -V ES_3.vcf.gz -V ES6_12.vcf.gz -V ES6_17.vcf.gz -V ES6_13.vcf.gz -V ES6_1.vcf.gz -V ES6_4.vcf.gz -V ES6_5.vcf.gz -V ES_6.vcf.gz -V ES_9.vcf.gz -o Brachy.vcf.gz
 
 ##提取SNP文件命令行
-/usr/bin/java -jar /home/software/GenomeAnalysisTK.jar -T SelectVariants -R ../../reference_stacei/Bstacei_316_v1.0.softmasked
-.fa -V Brachy.vcf.gz -selectType SNP -o Brachy.SNP.vcf.gz
+/usr/bin/java -jar /home/software/GenomeAnalysisTK.jar -T SelectVariants -R ../../reference_stacei/Bstacei_316_v1.0.softmasked.fa -V Brachy.vcf.gz -selectType SNP -o Brachy.SNP.vcf.gz
 
 ##提取INDEL命令行
-/usr/bin/java -jar /home/software/GenomeAnalysisTK.jar -T VariantFiltration -R ../../reference_stacei/Bstacei_316_v1.0.softmasked.fa -V Brachy.INDEL.vcf.gz --filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" --filterName "my_indel_filter" -o Brachy.HDflt.INDEL.vcf.gz
+/usr/bin/java -jar /home/software/GenomeAnalysisTK.jar -T SelectVariants -R ../../reference_stacei/Bstacei_316_v1.0.softmasked.fa -V Pop.vcf.gz -selectType INDEL -o Pop.INDEL.vcf.gz
 
 ##过滤SNP命令行
 /usr/bin/java -jar /home/software/GenomeAnalysisTK.jar -T VariantFiltration -R ../../reference_stacei/Bstacei_316_v1.0.softmasked.fa -V Brachy.SNP.vcf.gz --filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0"  --filterName "my_snp_filter" -o Brachy.HDflt.SNP.vcf.gz
