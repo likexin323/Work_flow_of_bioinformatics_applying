@@ -1,0 +1,47 @@
+###配置文件
+
+#maximal read length
+# Lines start with '#' are ignored by the assembler
+max_rd_len=151
+[LIB]
+#average insert size
+avg_ins=450
+#if sequence needs to be reversed 
+reverse_seq=0
+#in which part(s) the reads are used
+asm_flags=1
+#in which order the reads are used while scaffolding
+rank=1
+# cutoff of pair number for a reliable connection (default 3)
+pair_num_cutoff=3
+#minimal mapped length to contigs for a reliable read location (default 32)
+map_len=32
+#fastq file for read 1 /D
+q1=/data/users/likexin/Penicillium/BFC2016419/insert450bp/N1b_L1_I346.R1.clean.fastq.gz
+#fastq file for read 2 always follows fastq file for read 1
+q2=/data/users/likexin/Penicillium/BFC2016419/insert450bp/N1b_L1_I346.R2.clean.fastq.gz
+q1=/data/users/likexin/Penicillium/BFC2016419/insert450bpadded/N1b_L2_I346.R1.clean.fastq.gz 
+#fastq file for read 2 always follows fastq file for read 1
+q2=/data/users/likexin/Penicillium/BFC2016419/insert450bpadded/N1b_L2_I346.R2.clean.fastq.gz
+[LIB]
+#average insert size
+avg_ins=2000
+#if sequence needs to be reversed 
+reverse_seq=1
+#in which part(s) the reads are used
+asm_flags=3
+#in which order the reads are used while scaffolding
+rank=2
+# cutoff of pair number for a reliable connection (default 3)
+pair_num_cutoff=3
+#minimal mapped length to contigs for a reliable read location (default 32)
+map_len=35
+#fastq file for read 1 
+q1=/data/users/likexin/Penicillium/BFC2016419/2kmate-pairlib/N1b_L2_A005.matepair.R1.fq.gz
+#fastq file for read 2 always follows fastq file for read 1
+q2=/data/users/likexin/Penicillium/BFC2016419/2kmate-pairlib/N1b_L2_A005.matepair.R2.fq.gz
+
+
+###命令行 
+
+/data/users/likexin/SOAPdenovo2/SOAPdenovo-127mer  all -s /data/users/likexin/Penicillium/fungiAssemble.config -k 23 -K 103 -o penicillium.103 -p 60 -a 0 -d 0 -D 1 -M 1 -e 0 -G 50 -L 25 -c 0.1 -C 2 -b 1.5 -B 0.6 -N 0 -R
