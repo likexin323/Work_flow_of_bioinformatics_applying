@@ -1,0 +1,3 @@
+####SPAdes 组装命令行
+
+spades.py --pe1-1 /data/users/likexin/Penicillium/BFC2016419/insert450bp/N1b_L1_I346.R1.clean.fastq.gz --pe1-2 /data/users/likexin/Penicillium/BFC2016419/insert450bp/N1b_L1_I346.R2.clean.fastq.gz --pe2-1 /data/users/likexin/Penicillium/BFC2016419/insert450bpadded/N1b_L2_I346.R1.clean.fastq.gz --pe2-2 /data/users/likexin/Penicillium/BFC2016419/insert450bpadded/N1b_L2_I346.R2.clean.fastq.gz --mp1-1 /data/users/likexin/Penicillium/BFC2016419/2kmate-pairlib/N1b_L2_A005.matepair.R1.fq.gz --mp1-2 /data/users/likexin/Penicillium/BFC2016419/2kmate-pairlib/N1b_L2_A005.matepair.R2.fq.gz -t 60 -k 21,23,25,27,29,31,33,47,51,55,77,81,83,85,87,97,117,127 -m 800 --careful --cov-cutoff 5 -o Penicillium
