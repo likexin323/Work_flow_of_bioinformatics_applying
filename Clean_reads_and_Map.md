@@ -23,6 +23,8 @@ java -jar /home/share/software/picard/picard-tools-1.129/picard.jar CreateSequen
 #### 初次比对：使用BWA软件MEM模块，默认参数
 
 此处修改样本名称的时候需要把美元符号（$)去掉，如果一个文库测多次，需要分开做，然后使用samtools merge将得到的bam文件合并
+
+这里同一个文库多次测得的数据，在单引号内的名称需要一致，其他地方可以使用a,b等区分开。
 ```
 bwa mem -t 30 -R '@RG\tID:$samplename\tPL:illumina\tPU:illumina\tLB:$samplename\tSM:$samplename\t' ref.fasta sample.1.fq.gz sample.2.fq.gz | samtools sort -O bam -T /tmp/$samplename -o outdir/outprefix
 ```
