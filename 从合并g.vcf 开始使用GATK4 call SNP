@@ -1,0 +1,7 @@
+###使用GATK4 将前面产生的多个g.vcf文件合并生生一个g.vcf(https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_hellbender_tools_walkers_CombineGVCFs.php)
+/data/users/likexin/softwares/gatk-4.0.8.1/gatk CombineGVCFs -R scaffolds.fasta.1000.fa -V 3.realn.bam/N1a.g.vcf.gz -V 3.realn.bam/N2.g.vcf.gz -V 3.realn.bam/N5.g.vcf.gz -V 3.realn.bam/N6.g.vcf.gz -V 3.realn.bam/N7.g.vcf.gz -V 3.realn.bam/N8.g.vcf.gz -V 3.realn.bam/S10.g.vcf.gz -V 3.realn.bam/S11.g.vcf.gz -V 3.realn.bam/S13.g.vcf.gz -V 3.realn.bam/S15.g.vcf.gz -V 3.realn.bam/S16.g.vcf.gz -V 3.realn.bam/S4.g.vcf.gz -V 3.realn.bam/S5.g.vcf.gz  -O  penipop.g.vcf.gz
+
+
+#####将上面产生的单个g.vcf转变成vcf文件（https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_hellbender_tools_walkers_GenotypeGVCFs.php）
+
+/data/users/likexin/softwares/gatk-4.0.8.1/gatk --java-options "-Xmx12g" GenotypeGVCFs  -R scaffolds.fasta.1000.fa -V penipop.g.vcf.gz -O penipopoutput.vcf.gz
