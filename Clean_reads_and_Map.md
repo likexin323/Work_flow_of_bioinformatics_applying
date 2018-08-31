@@ -42,11 +42,11 @@ gatk --java-options "-Xmx4g" HaplotypeCaller -R /home/lzu_zhangshangzhe/00.genom
 
 #########GATK4到此就可以了，不再做下面两步
 
-#### 获得INDEL的区间
+「#### 获得INDEL的区间--此步忽略
 ```
 java -jar GenomeAnalysisTK.jar -nt 30 -Rref.fasta -T RealignerTargetCreator -o 3.realign/sample.realn.intervals -I 2.rehead/sample.rmdup.bam 2>3.realign/sample.realn.intervals.log
 ```
-#### 对这些区间重新比对
+#### 对这些区间重新比对--此步忽略
 ```
 java -jar GenomeAnalysisTK.jar -R ref.fa -T IndelRealigner -targetIntervals 3.realign/sample.realn.intervals -o 3.realign/sample.realn.bam -I 2.rehead/sample.rmdup.bam 2>3.realign/sample.realn.bam.log
 ```
