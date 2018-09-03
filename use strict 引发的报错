@@ -1,0 +1,46 @@
+####perl 脚本的use strict
+
+!/usr/bin/perl
+
+
+use strict;
+use warnings;
+
+print "Enter the first number:\n";
+chomp($a = <STDIN>);
+print "Enter the second number:\n";
+chomp($b = <STDIN>);
+$c=$a*$b;
+print "The total number is $c.\n";
+
+
+
+
+最近编写一个perl脚本时候，编译出现了一下错误：
+Global symbol "$c" requires explicit package name at practise1-4.pl line 11.
+Global symbol "$c" requires explicit package name at practise1-4.pl line 12.
+Execution of practise1-4.pl aborted due to compilation errors.
+
+后发现是由于使用use strict;造成，那么问题解决方法应该有两个：
+
+一，使用use strict; ，修改其他代码，如下：
+
+1，首先，检查你是不是用了use strict;
+
+2，如果用了use strict; 则，请在每个变量前加my将其声明为本地变量；
+
+3，进行完前两步后，重新编译，此时问题解决。
+
+最后修改成以下样式：
+#!/usr/bin/perl
+
+
+use strict;
+use warnings;
+
+print "Enter the first number:\n";
+chomp($a = <STDIN>);
+print "Enter the second number:\n";
+chomp($b = <STDIN>);
+my $c=$a*$b;
+print "The total number is my $c.\n";
