@@ -1,0 +1,4 @@
+###bwa mapping以后统计其比对率：用samtools flagstat对*.bam文件的mapping情况进行统计分析:
+
+
+  $ samtools flagstat file.bam > file.bam.stat   #可以得出total mapped reads的信息，total unmapped reads即为总的total reads减去total mapped reads。
