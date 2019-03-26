@@ -1,0 +1,26 @@
+samtools的mpileup
+
+samtools的mpileup命令是一个samtools中一个很重要的命令。它的主要功能主要是生成BCF、VCF文件或者pileup一个或多个bam文件。比对记录以在@RG中的样本名作为区分标识符。如果样本标识符缺失，那么每一个输入文件则视为一个样本。
+
+       在pileup格式中(没有-u或者-g参数)，每一行代表基因组的位置，由染色体名、1个碱基坐标、参考碱基、reads覆盖该位点的数量、reads的碱基、碱基质量和比对质量。有关匹配、错配、插入缺失、链、比对质量和一条reads的开始结束位置都被编码到reads碱基列。在此列上，“.”表示与正链上的参考碱基匹配，“,”表示与负链上的参考碱基匹配，“>”和“<”表示跳过参考基因，“ACGTN”表示正链上的错配，“acgtn”表示负链上的错配。此模式“+[0-9]+[ACGTNacgtn]+”表示在此位点至下一个位点之间与参考基因组对应位点相比，多了一段插入碱基，插入长度由模式中的整数表示。与此类似，“-[0-9]+[ACGTNacgtn]+”表示在此位点至下一个位点之间与参考基因组对应位点相比，缺失了一段碱基，长度由模式中的整数表示，缺失的碱基使用“*”表示，并在下一行中标识。同时，“^任意字符”（比如“^]”）表示reads的开始，“$”表示reads的结束。在“^任意字符”后的字符对应的比对质量那一列的字符ASCII码值减去33表示比对质量值。
+
+　　注意：通常来说，在reads碱基列中，将“^任意字符”、“$”、“-[0-9]+[ACGTNacgtn]+”、“+[0-9]+[ACGTNacgtn]+”删除后，碱基数目才能与后面的比对质量ASCII字符的数目一致。
+
+       另外，要注意到在输入文件中，有两种正交方式，通过使用-r和-l参数实现。-r参数需要指定一个索引号去进行随机访问而后者-l参数通过文件中的指定区域进行过滤，无需索引。这两个参数可以同时使用。通常使用bed文件，将待处理的文件进行分割，然后同时进行处理，这样可以加快处理速度。最后，处理完毕后，再合并。
+
+ 
+
+例子：
+
+#第一步：把sam文件转换成bam文件,我们得到map.bam文件  
+samtools view -bS map.sam > map.bam;  
+#第二步：sort 一下 BAM 文件,得到map.sorted.bam  
+samtools sort map.bam map.sorted;  
+#第三步：创建一个关于bam的索引文件,我们得到一个map.sorted.bam.bai的文件  
+samtools index map.sorted.bam;  
+#第四步：找snp，这里用的是sort以后的bam文件，如果不是，就会不断的报错  
+samtools mpileup -t DP -t SP -uvf ref.fa map.sorted.bam --output map.sorted.bam.vcf
+samtools mpileup -ugf ref.fa map.sorted.bam | bcftools view -vcg -D100 ->snp.vcf
+　　如果我们要获取全部的位点的信息，而不是仅仅snp位点，那么我们只需要把最后一行的-v (bcftools) 去掉就可以了，如下：
+
+samtools mpileup -ugf ref.fa map.sorted.bam | bcftools view -cg -D100 ->snp.vcf
